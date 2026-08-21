@@ -51,3 +51,21 @@ export const deleteInvestment = async (req, res) => {
   }
 };
 
+// export const getallinvestment = async (req, res)=>{
+// try {
+//   const AllInvestment = await Investment.
+//    res.status(200).json({
+//         success : true,
+//         message : "Investment deleted successfully",
+//         data : AllInvestment,
+//     });
+  
+// } catch (error) {
+//     res.status(500).json({
+//         success : false,
+//         message : "Error in getting All investment",
+//     });
+//   console.log(error)
+// }
+// }
+

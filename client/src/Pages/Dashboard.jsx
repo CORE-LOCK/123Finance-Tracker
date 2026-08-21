@@ -1,11 +1,12 @@
 import Home from "../Pages/Home";
-import { useState } from "react";
 import AddInvestment from "../Pages/AddInvestment";
 import InvestmentDetails from "../Pages/InvestmentDetails";
 import UpcomingPremiums from "../Pages/UpcomingPremiums";
+import { useContext } from "react";
+import  {context}  from "../Context/Createcontext";
 
 function Dashboard() {
-  const [comp, setComp] = useState("Home");
+const {comp, setComp } = useContext(context)
 
   return (
     <div className="flex h-screen overflow-hidden">

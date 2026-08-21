@@ -1,57 +1,14 @@
 import {
-  Bell,
   AlertCircle,
   TriangleAlert,
   CalendarDays,
 } from "lucide-react";
 
-import {Navbar} from '../Components/Navbar'
-
 function UpcomingPremiums() {
   return (
     <div className="min-h-screen w-full bg-[#f8f9fd] font-sans text-[#1d2535]">
 
-      {/* ================= TOP BAR ================= */}
-
-      <div className="flex h-[43px] items-center justify-between border-b border-[#e8eaf0] bg-white px-5">
-
-        {/* Search */}
-
-        <Navbar/>
-
-
-        {/* Right side */}
-
-        <div className="flex items-center gap-5">
-
-          <div className="relative cursor-pointer">
-
-            <Bell
-              size={17}
-              strokeWidth={1.7}
-              className="text-[#444b58]"
-            />
-
-            <span className="absolute right-[-1px] top-[-1px] h-[5px] w-[5px] rounded-full bg-[#d7192f]" />
-
-          </div>
-
-          <img
-            src="https://i.pravatar.cc/100?img=12"
-            alt="Profile"
-            className="h-6 w-6 rounded-full object-cover"
-          />
-
-        </div>
-
-      </div>
-
-
-      {/* ================= PAGE CONTENT ================= */}
-
       <div className="w-full px-4 pb-10 pt-3">
-
-        {/* ================= HEADER ================= */}
 
         <div className="flex items-center justify-between">
 

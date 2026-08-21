@@ -7,7 +7,9 @@ import {
   Clock3,
   ArrowRight,
 } from "lucide-react";
-import {Navbar} from '../Components/Navbar'
+import { useContext } from "react";
+import { context } from "../Context/Createcontext";
+
 
 const upcomingPremiums = [
   {
@@ -30,15 +32,26 @@ const upcomingPremiums = [
   },
 ];
 
+const getGreeting = () => {
+  const hour = new Date().getHours();
+
+  if (hour >= 5 && hour < 12) {
+    return "Good Morning";
+  } else if (hour >= 12 && hour < 17) {
+    return "Good Afternoon";
+  } else if (hour >= 17 && hour < 21) {
+    return "Good Evening";
+  } else {
+    return "Good Night";
+  }
+};
+
 function Dashboard() {
+  const {allinvestments} = useContext(context);
+
+  const allamount = allinvestments.reduce((total,investment)=>total + Number(investment.amount),0);
   return (
     <div className="min-h-screen w-full bg-[#f8f8fc] text-[#1c2434]">
-
-      {/* ================= TOP BAR ================= */}
-
-          <Navbar/>
-
-      {/* ================= MAIN ================= */}
 
       <main className="p-[17px]">
 
@@ -47,7 +60,7 @@ function Dashboard() {
         <section className="mb-[37px]">
 
           <h1 className="text-[34px] font-bold tracking-[-1.3px] leading-tight">
-            Good morning, Sonu Sharma
+            {getGreeting()}, Sonu Sharma
           </h1>
 
           <p className="mt-2.5 text-[13px] text-[#555d6d]">
@@ -62,14 +75,14 @@ function Dashboard() {
         <section className="mb-7 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
 
           <StatCard
-            title="TOTAL INVESTMENTS"
-            value="8"
+            title="TOTAL INVESTMENTS" 
+            value={allinvestments.length}
             icon={<Landmark size={19} />}
           />
 
           <StatCard
             title="TOTAL INVESTED"
-            value="₹2,45,000"
+            value={allamount}
             icon={<Wallet size={19} />}
             green
           />
