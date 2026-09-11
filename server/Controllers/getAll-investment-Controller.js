@@ -2,7 +2,9 @@ import Investment from "../Models/CreateInvestment.js";
 
 export const getAllInvestment = async (req, res) => {
   try {
-    const AllInvestment = await Investment.find({})
+    const AllInvestment = await Investment.find({
+     userID: req.userId,
+    });
     res.status(200).json({
         success : true,
         message : "Investment fetched successfully",

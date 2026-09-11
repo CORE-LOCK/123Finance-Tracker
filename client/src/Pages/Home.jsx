@@ -30,6 +30,7 @@ function Dashboard() {
     activestatus,
     upcomingInvDashboard,
     setComp,
+    user
   } = useContext(context);
 
   const allamount = allinvestments.reduce(
@@ -43,7 +44,7 @@ function Dashboard() {
 
         <section className="mb-[37px]">
           <h1 className="text-[34px] font-bold tracking-[-1.3px] leading-tight">
-            {getGreeting()}, Sonu Sharma
+            {getGreeting()}, {user?.Name}
           </h1>
 
           <p className="mt-2.5 text-[13px] text-[#555d6d]">

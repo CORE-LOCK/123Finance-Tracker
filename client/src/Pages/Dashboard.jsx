@@ -4,9 +4,18 @@ import InvestmentDetails from "../Pages/InvestmentDetails";
 import UpcomingPremiums from "../Pages/UpcomingPremiums";
 import { useContext } from "react";
 import  {context}  from "../Context/Createcontext";
+import {useNavigate} from "react-router-dom";
 
 function Dashboard() {
-const {comp, setComp } = useContext(context)
+const {comp, setComp, setAllinvestments  } = useContext(context)
+const Navigate = useNavigate();
+
+const handleLogout = ()=>{
+  localStorage.removeItem("token");
+  localStorage.removeItem("user")
+  setAllinvestments([]);
+  Navigate("/Login")
+}
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -253,7 +262,7 @@ const {comp, setComp } = useContext(context)
 
           {/* Logout */}
 
-          <button
+          <button onClick={handleLogout}
             className="
               mt-3
               flex

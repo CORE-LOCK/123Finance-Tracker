@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useContext} from "react";
 import axios from "axios";
+import { context } from "../Context/Createcontext";
 
 function AddInvestment() {
+  const { getinvestment } = useContext(context);
   const initialdata = {
     investmentName: "",
     amount: "",
@@ -30,7 +32,13 @@ function AddInvestment() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/add-investment',formData);
+      const token = localStorage.getItem("token");
+      await axios.post('http://localhost:5000/api/add-investment',formData, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      await getinvestment();
       setFormData(initialdata);     
       alert("form data submitted");
     } catch (error) {

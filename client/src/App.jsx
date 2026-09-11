@@ -3,7 +3,8 @@ import Home from "./Pages/Home";
 import Dashboard from "./Pages/Dashboard";
 import AddInvestment from './Pages/AddInvestment'
 import InvestmentDetails from './Pages/InvestmentDetails'
-import Registerform from './Pages/Registerform'
+import Registerform from './Pages/Register'
+import Loginform from './Pages/login'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route path="/AddInvestment" element={<AddInvestment />} />
       <Route path="/InvestmentDetails" element={<InvestmentDetails />} />
       <Route path="/Register" element={<Registerform />} />
+      <Route path="/Login" element={<Loginform />} />
     </Routes>
   );
 }

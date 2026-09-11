@@ -44,7 +44,8 @@ export const createInvestment = async (req, res) => {
       endDate,
       reminderDaysBefore,
       status,
-      email
+      email,
+      userID: req.userId
     });
 
     res.status(200).json({

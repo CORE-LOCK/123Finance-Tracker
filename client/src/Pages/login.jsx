@@ -1,4 +1,42 @@
+import {useNavigate} from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
+import { useContext } from "react";
+import { context } from "../Context/Createcontext";
+
 function Login() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+    const {
+    setUser
+  } = useContext(context);
+
+  const handleLogin = async (e)=>{
+    e.preventDefault();
+    try{
+      const response = await axios.post("http://localhost:5000/api/login",{
+      email,
+      password
+    })
+
+    console.log(response.data);
+    if(response.data.success){
+  localStorage.setItem("token", response.data.token);
+    localStorage.setItem(
+    "user",
+    JSON.stringify(response.data.user)
+  );
+    setUser(response.data.user);
+    navigate("/");
+    }
+  
+
+    }catch(error){
+      console.log(error);
+      alert("Login failed. Please check your credentials and try again.");
+    }
+  }
   return (
   <div
   className="relative min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat p-6"
@@ -41,40 +79,39 @@ function Login() {
       <div className="border-l border-white/20 p-12">
 
         <h2 className="mb-8 text-center text-3xl font-semibold text-white">
-          Register
+        Login
         </h2>
-
+<form onSubmit={handleLogin}>
         <input
-          type="text"
-          placeholder="Full Name"
-          className="mb-5 w-full rounded-full border border-white/20 bg-white/10 px-5 py-3 text-white placeholder:text-gray-300 outline-none backdrop-blur-md focus:border-indigo-400"
-        />
-
-        <input
+        onChange={(e)=>{setEmail(e.target.value)}}
+        value={email}
+        required
           type="email"
           placeholder="Email Address"
           className="mb-5 w-full rounded-full border border-white/20 bg-white/10 px-5 py-3 text-white placeholder:text-gray-300 outline-none backdrop-blur-md focus:border-indigo-400"
         />
 
         <input
+          onChange={(e)=>{setPassword(e.target.value)}}
+                value={password}
+                required
           type="password"
           placeholder="Password"
           className="mb-8 w-full rounded-full border border-white/20 bg-white/10 px-5 py-3 text-white placeholder:text-gray-300 outline-none backdrop-blur-md focus:border-indigo-400"
         />
 
         <button className="w-full rounded-full bg-gradient-to-r from-indigo-600 to-violet-500 py-3 text-lg font-semibold text-white transition hover:scale-105">
-          Create Account
+          Submit
         </button>
+        </form>
         <p className="mt-5 text-center text-sm text-gray-300">
   Already have an account?{" "}
-  <a
-    href="/login"
-    className="font-semibold text-indigo-300 hover:text-indigo-200 hover:underline"
+  <a onClick={() => navigate("/Register")}
+    className="font-semibold cursor-pointer text-indigo-300 hover:text-indigo-200 hover:underline"
   >
-    Login
+    Register
   </a>
 </p>
-
       </div>
 
     </div>
