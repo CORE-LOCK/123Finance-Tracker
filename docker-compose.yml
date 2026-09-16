@@ -1,16 +1,22 @@
 services:
  backend:
-   build: ./server
+  #  build: ./server
+   image: corelock/finance-backend:latest
    container_name: finance_backend
    ports:
-     - "5000:5000"
+     - "5000:5000" 
    env_file:
      - ./server/.env
+   volumes:
+     - 123finance-tracker:/app/data
 
  frontend:
-  build: ./client
+  # build: ./client
+  image: corelock/finance-client:latest
   container_name: finance_frontend
   ports:
     - "5173:5173"
   depends_on:
     - backend
+volumes:
+  123finance-tracker:
