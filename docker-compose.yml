@@ -1,0 +1,16 @@
+services:
+ backend:
+   build: ./server
+   container_name: finance_backend
+   ports:
+     - "5000:5000"
+   env_file:
+     - ./server/.env
+
+ frontend:
+  build: ./client
+  container_name: finance_frontend
+  ports:
+    - "5173:5173"
+  depends_on:
+    - backend
